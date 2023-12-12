@@ -7,16 +7,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'main',
     component: HomeView
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/auth',
+    name: 'auth',
+    component: () => import( '../views/Auth.vue')
   }
 ]
 
@@ -24,6 +21,19 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const getRole = localStorage.getItem('role') // получение роли для того, чтобы понять:
+  if (to.name !== 'auth' && !getRole) { // если роль не сохранена и пытается попасть на главную страницу - перенаправлять на страницу авторизации
+    next({ name: 'auth' })
+  }
+  else if (to.name === 'auth' && getRole) { //  если роль сохранена и пытается попасть на страницу авторизации, значит, пользователь - авторизован и его перенаправлять на главную страницу (она же, в данном случае, Контакты)
+    next({name: 'main'})
+  }
+  else {
+    next()
+  }
 })
 
 export default router
