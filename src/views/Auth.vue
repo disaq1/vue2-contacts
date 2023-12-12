@@ -5,20 +5,20 @@
     </h1>
     <div>
       <label>
-        <input type="radio" :value="{name: 'админ', value: 'admin'}" v-model="user">
+        <input type="radio" value="admin" v-model="client">
         Admin
       </label>
       <label>
-        <input type="radio" :value="{name: 'пользователь', value: 'user'}" v-model="user">
+        <input type="radio" value="user" v-model="client">
         User
       </label>
     </div>
     <button
-      :disabled="!user.value"
+      :disabled="!client"
       class="mt-8 auth__button button"
       @click="doAuthorization()"
     >
-      Войти как {{ user.name || '...' }}
+      Войти как {{ client || '...' }}
     </button>
   </div>
 </template>
@@ -29,10 +29,10 @@ import { useRouter } from 'vue-router/composables'
 
 const router = useRouter()
 
-const user = ref({})
+const client = ref('')
 
 const doAuthorization = () => {
-  localStorage.setItem('role', user.value.value)
+  localStorage.setItem('role', client.value)
   router.push('/')
 }
 </script>
