@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="home__header">
-      <button class="button" @click="updateUsersStore()">Update</button>
+      <button class="button" @click="updateUsersStore()">Updated</button>
       <div
           :class="['toggle-button', tableStyle === 'line' ? 'toggle-button--line' : 'toggle-button--tile']"
           @click="toggleTableStyle()"
