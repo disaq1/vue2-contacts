@@ -5,6 +5,11 @@
 </template>
 
 <style lang="scss">
+@for $i from 1 through 10 {
+  .mt-#{$i} {
+    margin-top: 4px * $i;
+  }
+}
 * {
   margin: 0;
   padding: 0;

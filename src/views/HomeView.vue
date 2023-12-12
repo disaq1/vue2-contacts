@@ -13,13 +13,13 @@
       </div>
       <button class="button" @click="logout()">Выйти</button>
     </div>
-    <div>
+    <div class="mt-3">
       <div>Сортировка</div>
       <button class="button" @click="sortByIncreasing()">отAдоZ</button>
       <button class="button" @click="sortByDecreasing()">отZдоA</button>
       <button class="button" @click="resetSort()">Изначальный порядок</button>
     </div>
-    <div v-if="role === 'admin'">
+    <div v-if="role === 'admin'" class="mt-3">
       <div>Фильтрация</div>
       <label for="byName">
         По имени
@@ -46,7 +46,7 @@
         />
       </label>
     </div>
-    <div :class="['users', tableStyle === 'line' ? 'users--line' : 'users--tile']">
+    <div :class="['mt-3 users', tableStyle === 'line' ? 'users--line' : 'users--tile']">
       <div class="users__header">
         <div class="users__table-header">
           <p>Avatar</p>
@@ -58,10 +58,10 @@
           <p>Nationality</p>
         </div>
       </div>
-      <div v-if="getDataLoadingStatus">
+      <div v-if="getDataLoadingStatus" class="mt-3">
         Loading
       </div>
-      <div v-else-if="searchedUsers.length" class="users__clients">
+      <div v-else-if="searchedUsers.length" class="mt-3 users__clients">
         <div v-for="(user, index) in searchedUsers" :key="`${user.id.value}-${index}`" class="user-wrapper">
           <div v-if="index !==0" class="divider"/>
           <UserCard :user="user"/>

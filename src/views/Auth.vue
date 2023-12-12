@@ -15,7 +15,7 @@
     </div>
     <button
       :disabled="!user.value"
-      class="auth__button button"
+      class="mt-8 auth__button button"
       @click="doAuthorization()"
     >
       Войти как {{ user.name || '...' }}
@@ -47,7 +47,6 @@ const doAuthorization = () => {
   border-radius: 8px;
 
   &__button {
-    margin: 32px 0 0;
     max-width: 320px;
     width: 100%;
   }
